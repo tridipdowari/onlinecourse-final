@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
+from django.shortcuts import render
+
+def course_detail(request):
+    return render(request, 'course_details_bootstrap.html')
 
 def submit(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
