@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
-from django.shortcuts import render
 
 def course_detail(request):
-    return render(request, 'course_details_bootstrap.html')
+    return render(request, 'onlinecourse_app/course_details_bootstrap.html')
 
 def submit(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
@@ -14,7 +13,7 @@ def submit(request, course_id):
         enrollment=enrollment
     )
 
-    return redirect('onlinecourse:show_exam_result', submission.id)
+    return redirect('show_exam_result', submission.id)
 
 def show_exam_result(request, submission_id):
     submission = get_object_or_404(Submission, pk=submission_id)
@@ -28,4 +27,4 @@ def show_exam_result(request, submission_id):
         'grade': total_score,
     }
 
-    return render(request, 'onlinecourse_app/exam_result.html', context)
+    return render(request, 'onlinecourse_app/result.html', context)
